@@ -18,7 +18,7 @@
                 <% products.map((product) => { %>
                 <li>
                     <img src="<%= product.image %>" alt="">
-                    <p><%= product.name %> </p>
+                    <p><a href="products/<%= product.id %>"><%= product.name %></a></p>
                     <p><%= product.price %>円</p>
                 </li>
                 <% }) %>
