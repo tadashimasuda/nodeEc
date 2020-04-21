@@ -6,11 +6,11 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT(20)
+        type: Sequelize.INTEGER
       },
       username: {
         allowNull: false,
-        type: Sequelize.STRING(255),
+        type: Sequelize.STRING,
     
       },
       admin_flg:{
@@ -20,11 +20,11 @@ module.exports = {
       },
       email:{
         allowNull: false,
-        type: Sequelize.STRING(255),
+        type: Sequelize.STRING,
       },
       password:{
         allowNull: false,
-        type: Sequelize.STRING(255),
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,

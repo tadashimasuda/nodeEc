@@ -10,7 +10,7 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(255)
+        type: Sequelize.STRING
       },
       price:{
         allowNull: false,
@@ -22,9 +22,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      image: {
+        type: Sequelize.STRING
+      },
       public_flg:{
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.TINYINT,
         defaultValue: 0,
       },
       created_at: {

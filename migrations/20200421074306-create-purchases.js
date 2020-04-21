@@ -19,7 +19,7 @@ module.exports = {
       },
       user_id: {
         allowNull: false,
-        type: Sequelize.BIGINT(20),
+        type: Sequelize.INTEGER,
         //mul
         references: {
           model: 'users',
@@ -28,11 +28,11 @@ module.exports = {
       },
       price:{
         allowNull: false,
-        type: Sequelize.STRING(255),
+        type: Sequelize.STRING,
       },
       amount:{
         allowNull: false,
-        type: Sequelize.STRING(255),
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
