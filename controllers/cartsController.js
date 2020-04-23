@@ -8,9 +8,9 @@ exports.index = (req, res) => {
         }]
     }
     //user_id が一致するcart.rowを持ってくる かつ　リレーションで
-      purchases.findAll(filter).then((results) => {
+    purchases.findAll(filter).then((results) => {
         console.log(results);
-        res.render('cart/index',{ purchases : results});
+        res.render('cart/index', { purchases: results });
     });
 }
 
@@ -26,17 +26,17 @@ exports.add = (req, res) => {
             product_id: req.params.id
         }
     }
-    console.log('zzzz')
+    console.log('add')
 
     //まず、productsからidでデータ
-    db.products.findOne({where: { id:req.params.id}}).then((results) => {
+    db.products.findOne({ where: { id: req.params.id } }).then((results) => {
         const params = {
             product_id: results.id,
             user_id: 1,//固定
             price: results.price,
             amount: 1,
-          };
-          //新規
+        };
+        //新規
         db.purchases.create(params).then((result) => {
             // if (result && product) {
             //   product.update({
@@ -44,14 +44,14 @@ exports.add = (req, res) => {
             //   })
             // }
             res.render('product/' + req.params.id);
-          });
+        });
         //データがない時 create()
-        res.redirect('/products/' + req.params.id);
+        res.redirect('/product/' + req.params.id);
     });
 }
 
-exports.confirm = (req,res) =>{
-    console.log('aaaaa')
+exports.confirm = (req, res) => {
+    console.log('confirm')
     //ユーザーの一致するカート取得（all）
     const filter = {
         include: [{
@@ -60,19 +60,26 @@ exports.confirm = (req,res) =>{
     }
     //後にuser_id　req.body.id
     //user_id が一致するcart.rowを持ってくる かつ　リレーションで
-      purchases.findAll(filter).then((results) => {
-        console.log(results);
-        res.render('cart/confirm',{ purchases : results});
+    purchases.findAll(filter).then((results) => {
+        res.render('cart/confirm', { purchases: results });
     });
 }
 
-exports.finish = (req,res) =>{
-    //flgを１する
+exports.finish = (req, res) => {
+    //購入したか否かのカラムなし
+    //db 対象のレコード削除
+    //stockでものがあるのか　ー＞　stock数合わせ
+    var userId = req.body.userId
+    db.purchases.destroy({ where: { user_id: userId　} }).then((results) => {
+        res.render('cart/finish');
+
+    });
+
 
 }
 
 
-exports.delete = (req,res) => {
+exports.delete = (req, res) => {
     db.purchases.destroy({ where: { id: req.params.id } }).then((results) => {
         res.redirect('/cart');
     });
