@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+
+    <title>カートを見る</title>
+</head>
+
+<body>
+    <header>
+        <h1>amazoon</h1>
+        <h2><a href="/cart/index">カートを見る</a></h2>
+    </header>
+    <main>
+        <h2>カートの中身</h2>
+        <p><%= purchases.product %></p>
+        <% purchases.map((parchases) =>{ %>
+            <img src="<%= parchases.product.image %> " alt="">
+            <p><%= parchases.product.name %> </p>
+            <p><%= parchases.product.price %> </p>
+            <p>個数：<%= parchases.amount %> </p>       
+        <% }) %>  
+
+        <form action="/cart/finish" method="POST">
+            <input type="hidden" value="<%= parcheses.id %>">
+            <input type="submit" value="購入">
+        </form>
+    </main>
+</body>
+
+</html>

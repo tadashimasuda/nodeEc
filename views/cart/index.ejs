@@ -4,11 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/style.css">
     <title>カートを見る</title>
 </head>
 
 <body>
     <main>
+        <header>
+            <h1>amazoon</h1>
+            <h2><a href="/cart/index">カートを見る</a></h2>
+        </header>
+        <div id="wrapper">
         <h2>カートの中身</h2>
         <p><%= purchases.product %></p>
         <% purchases.map((parchases) =>{ %>
@@ -21,7 +27,14 @@
                 <input type="hidden" name="_method" value="delete">
                 <input type="submit" value="削除する">
             </form>         
-        <% }) %>  
+        <% }) %> 
+
+        <form action="/cart/confirm" method="POST">
+            <!-- user_idをhiddenで送る　一時的に固定で１ -->
+            <input type="hidden" name="id" value="1">
+            <input type="submit" value="レジに進む">
+        </form>
+    </div>
         
     </main>
 </body>

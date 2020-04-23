@@ -26,9 +26,10 @@ exports.add = (req, res) => {
             product_id: req.params.id
         }
     }
+    console.log('zzzz')
+
     //まず、productsからidでデータ
     db.products.findOne({where: { id:req.params.id}}).then((results) => {
-        
         const params = {
             product_id: results.id,
             user_id: 1,//固定
@@ -48,6 +49,28 @@ exports.add = (req, res) => {
         res.redirect('/products/' + req.params.id);
     });
 }
+
+exports.confirm = (req,res) =>{
+    console.log('aaaaa')
+    //ユーザーの一致するカート取得（all）
+    const filter = {
+        include: [{
+            model: db.products,
+        }]
+    }
+    //後にuser_id　req.body.id
+    //user_id が一致するcart.rowを持ってくる かつ　リレーションで
+      purchases.findAll(filter).then((results) => {
+        console.log(results);
+        res.render('cart/confirm',{ purchases : results});
+    });
+}
+
+exports.finish = (req,res) =>{
+    //flgを１する
+
+}
+
 
 exports.delete = (req,res) => {
     db.purchases.destroy({ where: { id: req.params.id } }).then((results) => {
