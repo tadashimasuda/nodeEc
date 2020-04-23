@@ -11,6 +11,7 @@
 <body>
     <header>
         <h1>amazoon</h1>
+        <h2><a href="cart/index">カートを見る</a></h2>
     </header>
     <div id="wrapper">
         <main>
@@ -18,11 +19,14 @@
                 <img src="<%= product.image %>" alt="">
                 <p><%= product.name %></p>
                 <p><%= product.price %>円</p>
-                <div class="def-number-input number-input safari_only">
-                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
-                    <input class="amount" min="0" name="amount" value="1" type="number">
-                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
-                  </div>
+                <form action="/cart/<%= product.id %>" method="post">
+                    <div class="def-number-input number-input safari_only">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
+                        <input class="amount" min="0" name="amount" value="1" type="number">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
+                    </div>
+                    <input type="submit" value="カートへ追加する">
+                </form>
             </li>
         </main>
 </body>

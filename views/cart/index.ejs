@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カートを見る</title>
+</head>
+
+<body>
+    <main>
+        <h2>カートの中身</h2>
+        <p><%= purchases.product %></p>
+        <% purchases.map((parchases) =>{ %>
+            <img src="<%= parchases.product.image %> " alt="">
+            <p><%= parchases.product.name %> </p>
+            <p><%= parchases.product.price %> </p>
+            <p>個数：<%= parchases.amount %> </p>
+            <form action="cart/delete">
+                <button></button>
+                <p>削除する番号 : <%= parchases.id %> </p>
+            </form>
+         
+        <% }) %>  
+        
+    </main>
+</body>
+
+</html>
