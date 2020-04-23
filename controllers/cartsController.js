@@ -1,7 +1,6 @@
 const db = require('../models/index');
 const products = require('../models/index').products;
 const purchases = require('../models/index').purchases;
-
 exports.index = (req, res) => {
     const filter = {
         include: [{
@@ -29,7 +28,7 @@ exports.add = (req, res) => {
     }
     //まず、productsからidでデータ
     db.products.findOne({where: { id:req.params.id}}).then((results) => {
-        console.log('データ：' + results.name,results.id,results.price);
+        
         const params = {
             product_id: results.id,
             user_id: 1,//固定
@@ -47,5 +46,11 @@ exports.add = (req, res) => {
           });
         //データがない時 create()
         res.redirect('/products/' + req.params.id);
+    });
+}
+
+exports.delete = (req,res) => {
+    db.purchases.destroy({ where: { id: req.params.id } }).then((results) => {
+        res.redirect('/cart');
     });
 }

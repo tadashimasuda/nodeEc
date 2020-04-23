@@ -8,4 +8,6 @@ router.get('/index',cartsControllers.index);
 //商品詳細からカートに追加
 router.post('/:id',cartsControllers.add);
 
+//カートからの商品削除
+router.delete('/delete/:id',cartsControllers.delete);
 module.exports = router;

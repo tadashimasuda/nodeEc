@@ -16,11 +16,11 @@
             <p><%= parchases.product.name %> </p>
             <p><%= parchases.product.price %> </p>
             <p>個数：<%= parchases.amount %> </p>
-            <form action="cart/delete">
-                <button></button>
-                <p>削除する番号 : <%= parchases.id %> </p>
-            </form>
-         
+
+            <form action="/cart/delete/<%= parchases.id %>" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="削除する">
+            </form>         
         <% }) %>  
         
     </main>
