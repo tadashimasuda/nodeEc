@@ -17,6 +17,4 @@ router.post('/:id',cartsControllers.add);
 //カートからの商品削除
 router.delete('/delete/:id',cartsControllers.delete);
 
-
-
 module.exports = router;

@@ -18,16 +18,6 @@ exports.add = (req, res) => {
     //if文でamountに対する条件式を入れる。。数だけ＋する場合も想定する
     //amountは　purcheses.amount をデータ取得する(where(user_id,products_id))で履歴調査
     //.count()==0なら新規作成、.count()>0なら数字変更
-
-    //商品に関するデータを取得する。関数化してもいいのかなと
-    const params = {
-        where: {
-            user_id: 1,
-            product_id: req.params.id
-        }
-    }
-    console.log('add')
-
     //まず、productsからidでデータ
     db.products.findOne({ where: { id: req.params.id } }).then((results) => {
         const params = {
@@ -72,12 +62,8 @@ exports.finish = (req, res) => {
     var userId = req.body.userId
     db.purchases.destroy({ where: { user_id: userId　} }).then((results) => {
         res.render('cart/finish');
-
     });
-
-
 }
-
 
 exports.delete = (req, res) => {
     db.purchases.destroy({ where: { id: req.params.id } }).then((results) => {
